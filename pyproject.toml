@@ -1,0 +1,22 @@
+[project]
+name = "pizza-order-extractor"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "dcAi", email = "christian.amtsberg@gmx.de" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "dotenv>=0.9.9",
+    "ipykernel>=7.3.0",
+    "langchain>=1.4.0",
+    "langchain-aws>=1.7.5",
+]
+
+[project.scripts]
+pizza-order-extractor = "pizza_order_extractor:main"
+
+[build-system]
+requires = ["uv_build>=0.12.1,<0.13.0"]
+build-backend = "uv_build"
