@@ -2,7 +2,6 @@
 
 Bienvenido a la práctica. En esta asignatura utilizarás **Visual Studio Code, Git y GitHub** como tus herramientas principales de trabajo. Esta guía te explicará la metodología colaborativa que emplearemos y te guiará paso a paso desde la descarga del material base hasta la entrega de tus resultados.
 
----
 
 ## 🎯 Objetivos de este Entorno de Trabajo
 
@@ -42,7 +41,7 @@ Antes de comenzar, asegúrate de tener instalado y configurado en tu equipo:
 
 3. **Configurar el Entorno de Trabajo:** Instala las herramientas del proyecto.
 1. Abre la terminal integrada de VS Code (`Ctrl + ~` o `Menú > Terminal > New Terminal`).
-2. Ejecuta los comandos de instalación de dependencias requeridos para la práctica (por ejemplo, entornos virtuales, gestores de paquetes o controladores).
+2. Ejecuta los comandos de instalación de dependencias requeridos para la práctica.
 3. Asegúrate de seleccionar el ejecutable o *kernel* correcto dentro de VS Code si estás trabajando con cuadernos de notas o scripts interactivos.
 
 
@@ -53,7 +52,7 @@ Antes de comenzar, asegúrate de tener instalado y configurado en tu equipo:
 
 
 5. **Guardar y Subir tus Cambios (Commit & Push):** Registra tus avances en la nube.
-Guarda puntos de control periódicos de tu trabajo desde la terminal integrada de VS Code:
+Guarda puntos de control periódicos de tu trabajo desde la terminal integrada de VS Code. La primera vez que ejecutes `push`, VS Code te pedirá autenticarte con tu cuenta de GitHub:
 
 ```bash
 # 1. Preparar todos los archivos modificados
@@ -80,11 +79,47 @@ Para entregar el trabajo o solicitar revisión sobre un error complejo que afect
 
 ---
 
+## 🔄 Cómo Actualizar tu Proyecto si el Profesor Modifica el Repositorio Base
+
+Si el profesor añade nuevas plantillas, ejercicios o correcciones al proyecto original durante el curso, tu *Fork* no se actualizará automáticamente. Para traer las novedades a tu copia sin perder tu trabajo realizado, sigue estos sencillos pasos:
+
+### Método A: Desde la Web de GitHub (Recomendado)
+
+1. Entra en la página principal de tu *Fork* en GitHub (`[https://github.com/TU_USUARIO/nombre-del-proyecto](https://github.com/TU_USUARIO/nombre-del-proyecto)`).
+2. Si el profesor ha subido cambios, verás un aviso que dice: *"This branch is X commits behind..."*.
+3. Haz clic en el botón **Sync fork** y luego selecciona **Update branch**.
+4. Abre la terminal en tu VS Code y descarga las novedades ejecutando:
+```bash
+git pull
+
+```
+
+
+
+### Método B: Desde la Terminal de VS Code
+
+Si prefieres hacerlo mediante comandos:
+
+```bash
+# 1. Añadir el repositorio del profesor como fuente remota (solo la primera vez)
+git remote add upstream https://github.com/URL-DEL-REPO-DEL-PROFESOR.git
+
+# 2. Descargar e integrar las actualizaciones del profesor
+git fetch upstream
+git merge upstream/main
+
+# 3. Subir la actualización a tu propio GitHub
+git push
+
+```
+
+---
+
 ## ❓ Preguntas Frecuentes y Consejos
 
+* **¿Necesito autenticarme en VS Code para descargar el proyecto?**
+No. Puedes clonar tu repositorio público sin autenticarte. VS Code solo te solicitará iniciar sesión con GitHub cuando intentes hacer tu primer `git push`.
 * **¿Cuándo debo hacer `git push`?**
 Hazlo al finalizar cada ejercicio importante o al terminar la sesión de trabajo. De este modo mantendrás una copia de seguridad actualizada en la nube.
-* **¿Qué sucede si modifico la estructura de carpetas o archivos de configuración?**
-Todos los cambios en cualquier archivo rastreado del proyecto se incluirán automáticamente en tu siguiente *commit* y se reflejarán en el *Pull Request*.
 * **¿Se borrará o modificará mi trabajo si el profesor revisa mi Pull Request?**
 No. Tu *Fork* es un entorno completamente independiente. El *Pull Request* es solo una herramienta de inspección y evaluación para el profesor.
