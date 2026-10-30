@@ -44,7 +44,7 @@ Generate a comprehensive, edge-case-heavy dataset of test orders to evaluate the
 ### Notebook 2: Extractor Implementation & Optimization (LLM-as-a-Judge)
 Build an initial extraction prototype and establish an iterative refinement loop using a high-capability proprietary model (Claude, ChatGPT, or Gemini) as an evaluator. Focuses on catching edge cases, avoiding over-fitting to training data, and analyzing extraction failures.
 
-## Notebook 3: Configurate a schema agnostic evaluator and golden dataset for quantitative evaluation
+### Notebook 3: Configurate a schema agnostic evaluator and golden dataset for quantitative evaluation
 Evaluate the extraction results against a Golden Dataset (verified ground-truth JSON for our 10 test orders). The notebook provides a step-by-step discussion of the elements and trade-offs involved in setting up an evaluator script.
 
 ### Notebook 4: Model Right-Sizing & Cross-Benchmarking
@@ -78,46 +78,108 @@ To scale this pipeline into a production-grade telephony automation system, cons
 
 ## 5. Installation & Setup
 
-### Prerequisites & Dependency Management
-This project uses [`uv`](https://github.com/astral-sh/uv) for fast, deterministic Python package management. Python **3.13+** is recommended.
 
-1. **Clone the repository and install `uv`:**
-   ```bash
-   git clone <repository-url>
-   cd pizza-order-extractor
+Follow these step-by-step instructions to get the project environment set up on your machine. This guide is written so that anyone, even if you are new to development, can follow along easily!
 
-(If uv is not installed, follow the installation guide at astral.sh/uv).
+---
 
-    Initialize environment and sync dependencies:
-    Bash
+### Step 1: Install Visual Studio Code & Extensions
 
-    uv sync
+1. **Download & Install VS Code:**
+   * Go to the official website: [code.visualstudio.com](https://code.visualstudio.com/) and download the installer for your operating system (Windows, macOS, or Linux).
+   * Run the installer and complete the setup.
 
-    Running the Notebooks:
+2. **Install the Jupyter Extension:**
+   * Open VS Code.
+   * Click on the **Extensions** icon on the left sidebar (or press `Ctrl + Shift + X` on Windows / `Cmd + Shift + X` on Mac).
+   * Search for `Jupyter` (published by Microsoft) and click **Install**.
 
-        Option A: VS Code (Recommended)
-        Ensure the Jupyter extension is installed in VS Code. Open any notebook and select the .venv kernel created by uv.
+---
 
-        Option B: Standalone Jupyter Notebook
-        Register the virtual environment kernel and launch Jupyter:
-        Bash
+### Step 2: Install Python 3.13 on Windows
 
-        uv run python -m ipykernel install --user --name pizza_extractor --display-name "Python (pizza_extractor)"
-        uv run jupyter notebook
+Our project is configured to use your system's main Python installation. While package managers like `uv` can auto-download Python binaries, Windows SmartScreen or antivirus software frequently flags or blocks those automatic downloads. Installing Python 3.13 directly onto your system avoids these security blocks.
 
-Environment Configuration
+#### 1. Check your current Python version
+Open **PowerShell** or **Command Prompt** and type:
+```bash
+python --version
 
-    Obtain an API key from your preferred provider (OpenAI, Anthropic, or Google Gemini).
+```
 
-    Copy .env.example to .env:
-    Bash
+* If it outputs `Python 3.13.x`, you are ready for the next step!
+* If it returns an older version or an error like `'python' is not recognized`, proceed to install Python 3.13.
 
-    cp .env.example .env
+#### 2. Install Python 3.13
 
-    Add your API key to .env:
-    Fragmento de código
+* Visit the official download page: [Python 3.13 Release](https://www.python.org/downloads/release/python-3130/).
+* Scroll down to the **Files** section and download the **Windows installer (64-bit)**.
+* Launch the installer.
+* ⚠️ **IMPORTANT:** At the bottom of the first setup window, check the box that says **"Add python.exe to PATH"** before clicking **Install Now**.
 
-    OPENAI_API_KEY=your_api_key_here
-    ANTHROPIC_API_KEY=your_api_key_here
+---
 
-For support, feature requests, or contributions, please open an issue in the GitHub repository or contact the Data & Cloud Academy team.
+### Step 3: Install the `uv` Package Manager
+
+We use **`uv`**, an extremely fast Python package and virtual environment manager.
+
+#### How to Check if `uv` is Installed
+
+Open your terminal (PowerShell or Command Prompt) and run:
+
+```bash
+uv --version
+
+```
+
+If a version number appears (e.g., `uv 0.5.x`), `uv` is already installed! Move to Step 4.
+
+#### Installing `uv` on Windows
+
+If `uv` is not recognized, install it using **PowerShell**:
+
+1. Open PowerShell by searching for "PowerShell" in your Start Menu.
+2. Run the following installation command:
+```powershell
+powershell -ExecutionPolicy ByPass -c "irm [https://astral.sh/uv/install.ps1](https://astral.sh/uv/install.ps1) | iex"
+
+```
+
+
+3. **Restart your terminal window** after installation so that your system detects the newly added `uv` command.
+
+---
+
+### Step 4: Clone the Repository & Sync Dependencies
+
+1. Open VS Code, press `Ctrl + ~` (or go to `Terminal` -> `New Terminal`) to open the built-in terminal.
+2. Clone the repository and navigate into the project directory:
+```bash
+git clone https://github.com/christian-dca/pizza-extractor
+cd <YOUR-PROJECT-FOLDER-NAME>
+
+```
+
+
+3. Run `uv sync` to set up the project environment:
+```bash
+uv sync
+
+```
+
+
+* *Note:* The project's `pyproject.toml` file is configured to use the system Python installation (Python 3.13). `uv sync` will automatically create a local virtual environment (`.venv`) and install all required dependencies listed in `pyproject.toml`.
+
+
+
+---
+
+### 💡 Having Trouble? Use an AI Chatbot!
+
+Setting up local development environments can sometimes throw unexpected terminal or permission errors depending on your system configuration. If you run into an error during setup:
+
+1. **Copy the exact error message** from your terminal.
+2. **Paste it into an AI assistant** (such as ChatGPT, Claude, Microsoft Copilot, or Gemini).
+3. **Provide context:** Tell the AI: *"I am setting up a Python project on Windows using Python 3.13 and `uv`. I ran into this error: [paste your error here]. How do I fix it?"*
+
+AI chatbots are great at troubleshooting environment variables, PATH configuration errors, and command-line issues!
