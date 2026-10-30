@@ -11,5 +11,3 @@ wheels/
 #apikeys
 .env
 
-#scratchpad-notebooks
-lllm_test_2.ipynb
