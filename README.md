@@ -83,7 +83,27 @@ Follow these step-by-step instructions to get the project environment set up on 
 
 ---
 
-### Step 1: Install Visual Studio Code & Extensions
+### Step 1: Set Up LLM Access (Ollama, API Key & AI Chatbot)
+
+This tutorial combines **three types of LLM access** to mirror a real-world LLM engineering workflow:
+
+1. **Open-Source LLMs via Ollama (Local Execution):** Used to run open-weights models (such as Llama 3.1 8B or Qwen 2.5) locally on your machine with zero token costs and complete data privacy. Download and install Ollama from [ollama.com](https://ollama.com/).
+2. **Proprietary LLM API Key (e.g., Claude Haiku) for Benchmarking:** Used programmatically inside the Jupyter notebooks via LangChain to establish a cloud baseline and benchmark your local open-source models against a fast, capable proprietary model.
+3. **Access to a Powerful Proprietary Web Chatbot (Claude, ChatGPT, or Gemini):** Used in your browser as an engineering copilot to generate Pydantic extraction schemas, draft and refine system prompts, and discuss qualitative improvements when analyzing extraction failures.
+
+> **Do I have to pay for an API key?**  
+> You can complete the **entire tutorial using only free, local open-source models via Ollama**. However, having access to a strong proprietary model via API (such as **Claude Haiku**) is **strongly recommended** so you can run side-by-side benchmarks comparing extraction accuracy, schema compliance, and latency against local models. Completing the full tutorial using Claude Haiku will cost **less than €1 (1 Euro)** in total API usage.
+
+#### How to Get an Anthropic API Key (for Claude Haiku)
+
+1. **Sign up or log in:** Visit the Claude Console at [platform.claude.com](https://platform.claude.com/) and create an account or sign in. *(Note: API usage is billed separately from a regular Claude.ai chat subscription.)*
+2. **Add billing credits:** Go to **Settings → Billing**, add a payment method, and load a small prepaid credit balance (the minimum top-up is typically $5, and your actual usage for this tutorial will stay well under **€1**).
+3. **Create an API key:** Navigate to **Settings → API keys**, click **Create key**, give it a recognizable name (e.g., `pizza-extractor-tutorial`), and confirm.
+4. **Copy and save your key:** Copy the generated key (starting with `sk-ant-...`) immediately, as it will only be displayed once. Store it safely—you will add it to a local `.env` file (`ANTHROPIC_API_KEY="sk-ant-..."`) when running the notebooks. ⚠️ **Never commit your API key to GitHub.**
+
+---
+
+### Step 2: Install Visual Studio Code & Extensions
 
 1. **Download & Install VS Code:**
    * Go to the official website: [code.visualstudio.com](https://code.visualstudio.com/) and download the installer for your operating system (Windows, macOS, or Linux).
@@ -96,7 +116,7 @@ Follow these step-by-step instructions to get the project environment set up on 
 
 ---
 
-### Step 2: Install Python 3.13 on Windows
+### Step 3: Install Python 3.13 on Windows
 
 Our project is configured to use your system's main Python installation. While package managers like `uv` can auto-download Python binaries, Windows SmartScreen or antivirus software frequently flags or blocks those automatic downloads. Installing Python 3.13 directly onto your system avoids these security blocks.
 
@@ -119,7 +139,7 @@ python --version
 
 ---
 
-### Step 3: Install the `uv` Package Manager
+### Step 4: Install the `uv` Package Manager
 
 We use **`uv`**, an extremely fast Python package and virtual environment manager.
 
@@ -150,7 +170,7 @@ powershell -ExecutionPolicy ByPass -c "irm [https://astral.sh/uv/install.ps1](ht
 
 ---
 
-### Step 4: Clone the Repository & Sync Dependencies
+### Step 5: Clone the Repository & Sync Dependencies
 
 1. Open VS Code, press `Ctrl + ~` (or go to `Terminal` -> `New Terminal`) to open the built-in terminal.
 2. Clone the repository and navigate into the project directory:
